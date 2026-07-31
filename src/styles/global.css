@@ -800,15 +800,29 @@ a:hover {
 
   .topbar {
     padding: var(--space-3) var(--page-padding);
+    gap: var(--space-3);
+  }
+
+  .topbar-left {
     gap: var(--space-4);
+    min-width: 0;
+  }
+
+  .topbar-name {
+    font-size: var(--text-base);
   }
 
   .topbar-nav {
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 
   .topbar-link {
     font-size: var(--text-xs);
+  }
+
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
   }
 
   .shell {
