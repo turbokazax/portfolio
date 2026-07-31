@@ -258,19 +258,25 @@ a:hover {
 
 /* --- Theme toggle --- */
 .theme-toggle {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: grid;
   place-items: center;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-full);
   background: var(--bg-elevated);
-  color: var(--ink);
+  color: var(--accent);
   cursor: pointer;
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   transition:
     border-color var(--duration-fast) var(--ease-out),
     transform var(--duration-fast) var(--ease-out);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.25;
 }
 
 .theme-toggle:hover {
