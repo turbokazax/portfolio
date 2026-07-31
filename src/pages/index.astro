@@ -40,15 +40,6 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
           </p>
           <ul class="score-group-list">
             <li class="score-group">
-              <span class="score-group-label">A-Levels</span>
-              <div class="score-chips">
-                <span class="chip mono">CS: A*</span>
-                <span class="chip mono">Maths: A*</span>
-                <span class="chip mono">Further Maths: A*</span>
-                <span class="chip mono">Physics: A*</span>
-              </div>
-            </li>
-            <li class="score-group">
               <span class="score-group-label">Standardized Tests</span>
               <div class="score-chips">
                 <span class="chip mono">SAT: 1550</span>
@@ -221,25 +212,6 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
           <h3 class="entry-title">Microsoft AI Challenge — Machine Learning Track</h3>
           <p class="entry-meta">
             <span class="venue mono">Python, PyTorch, scikit-learn, pandas, NumPy, matplotlib · 2023</span>
-          </p>
-        </div>
-      </li>
-    </ol>
-
-    <hr class="hairline" />
-
-    <h2 class="content-heading">Teaching</h2>
-    <ol class="entry-list">
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Teaching Assistant — Course Name</h3>
-          <p class="entry-meta">
-            <span class="authors">University Name</span>
-            <span class="sep">·</span>
-            <span class="venue mono">Term Year</span>
-          </p>
-          <p class="entry-desc muted">
-            Brief description of role and responsibilities.
           </p>
         </div>
       </li>
