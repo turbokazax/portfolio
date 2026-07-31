@@ -1,0 +1,47 @@
+---
+import Topbar from "../components/Topbar.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Researcher", description = "" } = Astro.props;
+---
+
+<!--
+  DIRECTION CONTRACT — seed key: 1ab788c1
+  SURFACE: Blog post reading view. Global topbar (shared Topbar component)
+  + a single centered reading column (~68ch). Inherits Research Atelier world.
+  Mode: Read.
+-->
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body class="blog-post-view">
+    <Topbar links={[
+      { label: "Publications", id: "publications" },
+      { label: "Projects", id: "projects" },
+      { label: "CV", id: "cv" },
+      { label: "Blog", id: "blog" },
+      { label: "Albums", id: "albums" },
+    ]} />
+
+    <main class="blog-post">
+      <article class="prose">
+        <slot />
+      </article>
+      <footer class="blog-post-footer">
+        <a href="/" class="back-link">&larr; Back to home</a>
+      </footer>
+    </main>
+  </body>
+</html>
