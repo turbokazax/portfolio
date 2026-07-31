@@ -453,7 +453,7 @@ a:hover {
   font-size: var(--text-2xl);
   font-weight: 400;
   letter-spacing: -0.03em;
-  margin-top: var(--space-8);
+  margin-top: var(--space-6);
   margin-bottom: var(--space-5);
 }
 
@@ -475,7 +475,7 @@ a:hover {
 .hairline {
   border: none;
   border-top: 1px solid var(--hairline);
-  margin: var(--space-10) 0;
+  margin: var(--space-6) 0;
 }
 
 /* --- Entry list --- */
@@ -485,7 +485,7 @@ a:hover {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-5);
 }
 
 .entry {
