@@ -27,7 +27,7 @@ typography:
     letterSpacing: "-0.04em"
   body:
     fontFamily: "Inter, system-ui, -apple-system, sans-serif"
-    fontSize: "1rem"
+    fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "normal"
@@ -73,9 +73,10 @@ components:
     rounded: "{rounded.sm}"
   theme-toggle:
     backgroundColor: "{colors.paper-elevated}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.accent}"
     rounded: "{rounded.full}"
     border: "1px solid {colors.hairline}"
+    size: "40×40px"
 ---
 
 # Design System: Research Atelier
@@ -139,13 +140,13 @@ A restrained palette: warm neutrals plus one accent. Two complete schemes — li
 
 Single-column, centered, max-width 68ch (`--measure`). The page is a vertical reading experience divided by 1px hairline rules between sections.
 
-- **Page padding:** 1.5rem horizontal (desktop), scaling to 1.25rem on mobile (`≤600px`)
+- **Page padding:** 1.5rem horizontal (desktop), scaling to 1.25rem on mobile (`≤768px`)
 - **Vertical rhythm:** Sections padded 3rem top/bottom; hero padded 4rem bottom; entries within a section spaced 2rem apart
 - **Section heading** sits 2rem above its content, set in mono label style
 - **Footer** is a hairline-separated zone with copyright and a repeated social-icon row
-- **Theme toggle** is fixed top-right (1.25rem from edges), 40×40px circle, persistent across scroll
+- **Theme toggle** is top-right of the sticky navbar, 40×40px circle, persistent across scroll
 
-**Responsive breakpoint:** 600px. Below this: avatar shrinks to 96px, page padding tightens, hero padding reduces. The single-column model means no reflow of a grid — only scale changes.
+**Responsive breakpoint:** 768px. Below this the layout switches from two-column to a single flex-column via `.app { display: flex; flex-direction: column }`, `.shell` and `.sidebar` use `display: contents` so their children become direct flex siblings of the navbar, then `order` arranges them: navbar (1, sticky) → identity masthead (2) → bio (3) → content (4) → footer (5). The navbar is horizontally scrollable (`overflow-x: auto`) so all section links stay reachable on narrow screens. Avatar shrinks to 100px. Identity block and bio are centered.
 
 ## Elevation & Depth
 
@@ -166,13 +167,14 @@ The form language is straight edges and fine lines. The only curves are full cir
 ## Components
 
 ### Theme Toggle
-- **Shape:** 40×40px circle (radius full), fixed top-right
-- **Style:** Elevated background, hairline border, sun/moon SVG swaps by theme
+- **Shape:** 40×40px circle (radius full), top-right of the sticky navbar
+- **Style:** Elevated background, hairline border, accent-colored sun/moon SVG icons (18px, 2.25 stroke weight)
 - **States:** Hover scales to 1.08×; focus-visible ring in accent; theme persists via localStorage
 
 ### Social Icons
-- **Shape:** 36×36px hit area, 6px radius
-- **Style:** Stroke-based SVGs (1.75 stroke weight) inheriting currentColor; muted ink default
+- **Shape:** 32×32px hit area, 6px radius
+- **Style:** Fill-based SVGs inheriting currentColor; muted ink default
+- **Set:** LinkedIn, GitHub, Telegram, ORCID
 - **States:** Hover raises color to full ink + soft accent-tinted background; focus-visible ring
 
 ### Chips
@@ -184,6 +186,22 @@ The form language is straight edges and fine lines. The only curves are full cir
 - **Structure:** Unordered list, 2rem gap between entries, no bullets
 - **Each entry:** Title (sans 500) + metadata row (mono, faint) + description (muted) + optional chip links
 - **Use:** Publications, projects, experience, education — four sections, one component
+
+### Download Chips
+- **Structure:** `.cv-downloads` flex container (wrap, 0.75rem gap) holding two `.download-chip` buttons
+- **Primary chip:** Accent-tinted background (`accent-soft`), inline SVG icon (14px) + label, accent border + swapped background on hover
+- **Ghost chip (secondary):** Transparent background, hairline border, muted text; accent-tinted background + accent border on hover
+- **Use:** CV download + STEM Portfolio download in the CV section
+
+### Score Groups (Education)
+- **Structure:** `.score-group-list` (flex column, 1rem gap) of `.score-group` items
+- **Each group:** `.score-group-label` (mono label style — uppercase, tracked, faint) + `.score-chips` flex wrap of `.chip` pills
+- **Use:** Education test scores grouped by category (e.g. "Standardized Tests", "AP Exams")
+
+### Email Chip
+- **Structure:** Centered `.sidebar-email` link in the identity block, mono font, mailto: href
+- **Style:** Elevated background, hairline border, rounded pill; accent text + accent-soft background on hover
+- **Use:** Contact email displayed beneath the location line
 
 ### Hairline
 - **Style:** 1px solid, hairline color, full-width, no margin
