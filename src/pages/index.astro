@@ -37,8 +37,13 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
           </p>
           <p class="entry-desc muted">
             A-Levels: Computer Science (A*), Maths (A*), Further Maths (A*), Physics (A).
-            IELTS 8.0 · SAT 1550 (750 EBRW, 800 Math) · AP Calculus BC 5, AP CS A 5.
           </p>
+          <ul class="prose-tags">
+            <li class="chip mono">IELTS 8.0</li>
+            <li class="chip mono">SAT 1550</li>
+            <li class="chip mono">AP Calc BC 5</li>
+            <li class="chip mono">AP CS A 5</li>
+          </ul>
         </div>
       </li>
     </ol>
