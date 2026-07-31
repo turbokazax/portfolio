@@ -386,6 +386,24 @@ a:hover {
   letter-spacing: 0.02em;
 }
 
+.sidebar-email {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
+  word-break: break-all;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.sidebar-email:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+
 .sidebar-bio {
   font-size: var(--text-sm);
   color: var(--ink-muted);
