@@ -532,6 +532,16 @@ a:hover {
   margin-top: var(--space-1);
 }
 
+.entry-main .prose-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  border: none;
+}
+
 .entry-links {
   display: flex;
   gap: var(--space-2);

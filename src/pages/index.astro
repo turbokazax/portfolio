@@ -1,17 +1,311 @@
 ---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
 
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Your Name — Researcher" description="Undergrad researcher exploring computer vision and robotics." active="main">
+  <!-- MAIN / ABOUT -->
+  <section class="page-section" id="main">
+    <h2 class="content-heading">About Me</h2>
+    <p class="lede">
+      I build perception systems that let machines understand and act in the
+      physical world. My current work sits at the intersection of computer
+      vision and robotics — from visual representation learning to
+      embodied agents that close the loop between seeing and doing.
+    </p>
+    <p class="muted body-text">
+      I'm drawn to questions where the visual and the physical meet: How
+      should a robot represent what it sees in a way that's useful for
+      action? What does it mean for an embodied agent to "understand" a
+      scene? I try to answer these with rigorous experiments, clean code,
+      and papers that report what actually happened.
+    </p>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Education</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">B.Sc. in Computer Science</h3>
+          <p class="entry-meta">
+            <span class="authors">University Name</span>
+            <span class="sep">·</span>
+            <span class="venue mono">2023 – 2027 (expected)</span>
+          </p>
+          <p class="entry-desc muted">
+            Relevant coursework, honors, or focus area.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Activities</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Role — Organization</h3>
+          <p class="entry-meta">
+            <span class="authors">Organization</span>
+            <span class="sep">·</span>
+            <span class="venue mono">2025 – present</span>
+          </p>
+          <p class="entry-desc muted">
+            Description of responsibility and what came of it.
+          </p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Role — Organization</h3>
+          <p class="entry-meta">
+            <span class="authors">Organization</span>
+            <span class="sep">·</span>
+            <span class="venue mono">2024 – 2025</span>
+          </p>
+          <p class="entry-desc muted">
+            Concise description of responsibility and outcome.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section class="page-section" id="publications">
+    <h2 class="content-heading">Publications</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">
+            <a href="#">Paper Title That Makes a Specific Claim</a>
+          </h3>
+          <p class="entry-meta">
+            <span class="authors">Your Name, Coauthor One, Coauthor Two</span>
+            <span class="sep">·</span>
+            <span class="venue mono">Conference/Workshop 2026</span>
+          </p>
+          <p class="entry-desc muted">
+            One-line description of what the paper shows and why it matters.
+          </p>
+        </div>
+        <div class="entry-links">
+          <a href="#" class="chip mono">PDF</a>
+          <a href="#" class="chip mono">Code</a>
+          <a href="#" class="chip mono">arXiv</a>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">
+            <a href="#">Another Paper on a Different Topic</a>
+          </h3>
+          <p class="entry-meta">
+            <span class="authors">Coauthor, Your Name</span>
+            <span class="sep">·</span>
+            <span class="venue mono">Venue 2025</span>
+          </p>
+          <p class="entry-desc muted">
+            Brief description of contribution and key result.
+          </p>
+        </div>
+        <div class="entry-links">
+          <a href="#" class="chip mono">PDF</a>
+          <a href="#" class="chip mono">Code</a>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="page-section" id="projects">
+    <h2 class="content-heading">Projects</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">
+            <a href="#">Project Name — One-Line Descriptor</a>
+          </h3>
+          <p class="entry-meta">
+            <span class="venue mono">computer vision · embodied AI</span>
+            <span class="sep">·</span>
+            <span class="mono">2025</span>
+          </p>
+          <p class="entry-desc muted">
+            What you built, the key idea, and a concrete result or demo.
+          </p>
+        </div>
+        <div class="entry-links">
+          <a href="#" class="chip mono">Code</a>
+          <a href="#" class="chip mono">Writeup</a>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">
+            <a href="#">Second Project</a>
+          </h3>
+          <p class="entry-meta">
+            <span class="venue mono">robotics</span>
+            <span class="sep">·</span>
+            <span class="mono">2025 – present</span>
+          </p>
+          <p class="entry-desc muted">
+            Description with a specific outcome or metric if available.
+          </p>
+        </div>
+        <div class="entry-links">
+          <a href="#" class="chip mono">Code</a>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- CV -->
+  <section class="page-section" id="cv">
+    <h2 class="content-heading">Curriculum Vitae</h2>
+    <p class="lede">
+      You can download my full CV below, or browse the highlights throughout
+      this site.
+    </p>
+    <div class="entry-links" style="margin-top: var(--space-4);">
+      <a href="#" class="chip mono">Download CV (PDF)</a>
+    </div>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Research Experience</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Research Assistant</h3>
+          <p class="entry-meta">
+            <span class="authors">Lab / University Name</span>
+            <span class="sep">·</span>
+            <span class="venue mono">2025 – present</span>
+          </p>
+          <p class="entry-desc muted">
+            What you worked on, methods used, and what came of it.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Teaching</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Teaching Assistant — Course Name</h3>
+          <p class="entry-meta">
+            <span class="authors">University Name</span>
+            <span class="sep">·</span>
+            <span class="venue mono">Spring 2025</span>
+          </p>
+          <p class="entry-desc muted">
+            Brief description of role and responsibilities.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Honors &amp; Awards</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Award or Honor Name</h3>
+          <p class="entry-meta">
+            <span class="venue mono">Organization · 2025</span>
+          </p>
+          <p class="entry-desc muted">
+            Context or reason for the recognition.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- BLOG -->
+  <section class="page-section" id="blog">
+    <h2 class="content-heading">Blog</h2>
+    <p class="lede">
+      Notes on research, papers, and building things. Shorter and more
+      frequent than publications.
+    </p>
+    <ol class="entry-list">
+      {posts.map((post) => (
+        <li class="entry">
+          <div class="entry-main">
+            <h3 class="entry-title">
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </h3>
+            <p class="entry-meta">
+              <time class="mono" datetime={post.data.date.toISOString().slice(0, 10)}>
+                {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+              </time>
+            </p>
+            <p class="entry-desc muted">{post.data.description}</p>
+            {post.data.tags.length > 0 && (
+              <ul class="prose-tags">
+                {post.data.tags.map((tag) => (
+                  <li class="chip mono">{tag}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- ALBUMS -->
+  <section class="page-section" id="albums">
+    <h2 class="content-heading">Albums</h2>
+    <p class="lede">
+      Photos from conferences, labs, and the field. A visual log of the work.
+    </p>
+    <ol class="album-list">
+      <li class="album">
+        <div class="album-grid">
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+        </div>
+        <p class="album-meta"><span class="album-name">Conference 2026</span> <span class="mono album-count">12 photos</span></p>
+      </li>
+      <li class="album">
+        <div class="album-grid">
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+        </div>
+        <p class="album-meta"><span class="album-name">Lab &amp; Builds</span> <span class="mono album-count">8 photos</span></p>
+      </li>
+      <li class="album">
+        <div class="album-grid">
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+          <div class="album-tile"></div>
+        </div>
+        <p class="album-meta"><span class="album-name">Field &amp; Travel</span> <span class="mono album-count">15 photos</span></p>
+      </li>
+    </ol>
+  </section>
+</Layout>
