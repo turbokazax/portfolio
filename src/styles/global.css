@@ -236,7 +236,7 @@ a:hover {
 }
 
 .topbar-link {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--ink-muted);
   text-decoration: none;
   padding: var(--space-1) 0;
@@ -805,6 +805,18 @@ a:hover {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
+  /* Lock the page to the phone width — only inner scrollers (navbar) move */
+  html {
+    overflow-x: hidden;
+  }
+
+  /* Clamp the navbar itself to the viewport so its content scrolls inside it */
+  .topbar {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   :root {
     --page-padding: var(--space-5);
   }
@@ -828,7 +840,7 @@ a:hover {
   }
 
   .topbar-link {
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
   }
 
   .theme-toggle {
@@ -914,56 +926,79 @@ a:hover {
     margin-bottom: var(--space-8);
   }
 
-  /* Mobile: reorder so navbar sits between sidebar (identity) and content */
+  /* Mobile: navbar pinned to top; identity, content, footer flow below */
   .app {
     display: flex;
     flex-direction: column;
   }
 
-  /* Break shell apart so sidebar + content can be reordered as siblings of topbar */
+  /* Break shell + sidebar apart so every block becomes a topbar sibling for ordering */
   .shell {
     display: contents;
   }
 
   .sidebar {
-    order: 1;
+    display: contents;
   }
 
   .topbar {
-    order: 2;
-    position: relative; /* not sticky on mobile — scrolls after identity */
-    top: auto;
+    order: 1;
+    position: sticky; /* pinned to viewport top on mobile */
+    top: 0;
+    z-index: 100;
     overflow: hidden;
     padding: var(--space-3) var(--page-padding);
   }
 
-  .content {
+  .sidebar-masthead {
+    order: 2;
+    padding-top: var(--space-4);
+  }
+
+  .sidebar-bio {
     order: 3;
+    margin-bottom: 0; /* override base auto that pushed footer within sidebar */
+    align-self: center;
+    text-align: center;
   }
 
-  /* Identity already shown in sidebar — hide the redundant topbar name + divider */
-  .topbar-name,
-  .topbar-divider {
-    display: none;
+  .content {
+    order: 4;
   }
 
-  /* Scrollable horizontal nav strip; theme toggle pinned at right */
+  .sidebar-footer {
+    order: 5; /* footer at the very bottom of the page */
+  }
+
+  /* Name link back in the navbar (clickable → returns to main) */
+  .topbar-name {
+    font-size: var(--text-base);
+    white-space: nowrap;
+  }
+
+  /* The whole navbar row (name + divider + links) scrolls as one strip */
   .topbar-left {
     flex: 1;
     min-width: 0;
-  }
-
-  .topbar-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
     scroll-snap-type: x proximity;
-    gap: var(--space-4);
   }
 
-  .topbar-nav::-webkit-scrollbar {
+  .topbar-left::-webkit-scrollbar {
     display: none; /* Chrome/Safari */
+  }
+
+  .topbar-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-shrink: 0;
   }
 
   .topbar-link {
