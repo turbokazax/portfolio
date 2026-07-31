@@ -42,11 +42,12 @@ const navLinks = [
     <title>{title}</title>
   </head>
   <body>
-    <!-- GLOBAL TOP NAVBAR -->
-    <Topbar active={active} links={navLinks} />
+    <div class="app">
+      <!-- GLOBAL TOP NAVBAR -->
+      <Topbar active={active} links={navLinks} />
 
-    <!-- MAIN TWO-COLUMN AREA -->
-    <div class="shell">
+      <!-- MAIN TWO-COLUMN AREA -->
+      <div class="shell">
       <!-- LEFT: Identity -->
       <aside class="sidebar">
         <div class="sidebar-masthead">
@@ -90,10 +91,11 @@ const navLinks = [
         </div>
       </aside>
 
-      <!-- RIGHT: Content (one section at a time) -->
-      <main class="content">
-        <slot />
-      </main>
+        <!-- RIGHT: Content (one section at a time) -->
+        <main class="content">
+          <slot />
+        </main>
+      </div>
     </div>
 
     <script>

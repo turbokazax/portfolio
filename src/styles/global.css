@@ -297,6 +297,17 @@ a:hover {
 }
 
 /* ============================================================
+   APP WRAPPER — centering shell for topbar + shell
+   Desktop: plain block layout (topbar stacks above shell) — identical to current.
+   Mobile: becomes a flex column that reorders children (see mobile breakpoint).
+   ============================================================ */
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ============================================================
    SHELL — Two-column layout below the topbar
    ============================================================ */
 
@@ -901,5 +912,68 @@ a:hover {
 
   .prose-header {
     margin-bottom: var(--space-8);
+  }
+
+  /* Mobile: reorder so navbar sits between sidebar (identity) and content */
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Break shell apart so sidebar + content can be reordered as siblings of topbar */
+  .shell {
+    display: contents;
+  }
+
+  .sidebar {
+    order: 1;
+  }
+
+  .topbar {
+    order: 2;
+    position: relative; /* not sticky on mobile — scrolls after identity */
+    top: auto;
+    overflow: hidden;
+    padding: var(--space-3) var(--page-padding);
+  }
+
+  .content {
+    order: 3;
+  }
+
+  /* Identity already shown in sidebar — hide the redundant topbar name + divider */
+  .topbar-name,
+  .topbar-divider {
+    display: none;
+  }
+
+  /* Scrollable horizontal nav strip; theme toggle pinned at right */
+  .topbar-left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .topbar-nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    scroll-snap-type: x proximity;
+    gap: var(--space-4);
+  }
+
+  .topbar-nav::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .topbar-link {
+    white-space: nowrap;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  .theme-toggle {
+    flex-shrink: 0;
+    position: static;
   }
 }
