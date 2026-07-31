@@ -1058,6 +1058,40 @@ a:hover {
   min-width: 4.5rem;
 }
 
+/* ============================================================
+   SCORE GROUP — Variant B: grouped chips with category labels
+   ============================================================ */
+
+.score-group-list {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.score-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.score-group-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.score-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
 .scorecard-value {
   font-family: var(--font-display);
   font-size: var(--text-2xl);

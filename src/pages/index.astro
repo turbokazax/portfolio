@@ -35,55 +35,34 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
             <span class="sep">·</span>
             <span class="venue mono">Aug 2023 – Jun 2025</span>
           </p>
-          <div class="scorecard">
-            <div class="scorecard-group">
-              <span class="scorecard-label">A-Levels</span>
-              <div class="scorecard-grid">
-                <div class="scorecard-tile">
-                  <span class="scorecard-value">A*</span>
-                  <span class="scorecard-key">Computer Science</span>
-                </div>
-                <div class="scorecard-tile">
-                  <span class="scorecard-value">A*</span>
-                  <span class="scorecard-key">Maths</span>
-                </div>
-                <div class="scorecard-tile">
-                  <span class="scorecard-value">A*</span>
-                  <span class="scorecard-key">Further Maths</span>
-                </div>
-                <div class="scorecard-tile">
-                  <span class="scorecard-value">A*</span>
-                  <span class="scorecard-key">Physics</span>
-                </div>
+          <p class="entry-desc muted">
+            A-Levels: Computer Science (A*), Maths (A*), Further Maths (A*), Physics (A).
+          </p>
+          <ul class="score-group-list">
+            <li class="score-group">
+              <span class="score-group-label">A-Levels</span>
+              <div class="score-chips">
+                <span class="chip mono">CS: A*</span>
+                <span class="chip mono">Maths: A*</span>
+                <span class="chip mono">Further Maths: A*</span>
+                <span class="chip mono">Physics: A*</span>
               </div>
-            </div>
-            <div class="scorecard-group">
-              <span class="scorecard-label">Standardized Tests</span>
-              <div class="scorecard-grid">
-                <div class="scorecard-tile">
-                  <span class="scorecard-value">1550</span>
-                  <span class="scorecard-key">SAT</span>
-                </div>
-                <div class="scorecard-tile">
-                  <span class="scorecard-value">8.0</span>
-                  <span class="scorecard-key">IELTS</span>
-                </div>
+            </li>
+            <li class="score-group">
+              <span class="score-group-label">Standardized Tests</span>
+              <div class="score-chips">
+                <span class="chip mono">SAT: 1550</span>
+                <span class="chip mono">IELTS: 8.0</span>
               </div>
-            </div>
-            <div class="scorecard-group">
-              <span class="scorecard-label">AP Exams</span>
-              <div class="scorecard-grid">
-                <div class="scorecard-tile">
-                  <span class="scorecard-value">5</span>
-                  <span class="scorecard-key">Calc BC</span>
-                </div>
-                <div class="scorecard-tile">
-                  <span class="scorecard-value">5</span>
-                  <span class="scorecard-key">CS A</span>
-                </div>
+            </li>
+            <li class="score-group">
+              <span class="score-group-label">AP Exams</span>
+              <div class="score-chips">
+                <span class="chip mono">Calc BC: 5</span>
+                <span class="chip mono">CS A: 5</span>
               </div>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </li>
     </ol>
