@@ -936,6 +936,7 @@ a:hover {
   .sidebar-footer {
     margin-top: var(--space-4);
     padding-top: var(--space-4);
+    padding-bottom: var(--space-10);
     width: 100%;
     display: flex;
     flex-direction: column;
