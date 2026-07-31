@@ -7,22 +7,20 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 );
 ---
 
-<Layout title="Your Name — Researcher" description="Undergrad researcher exploring computer vision and robotics." active="main">
+<Layout title="Arnur Jumabekov — Researcher" description="Aspiring researcher — computer vision & robotics. Published work on medical image analysis and robotic control." active="main">
   <!-- MAIN / ABOUT -->
   <section class="page-section" id="main">
     <h2 class="content-heading">About Me</h2>
     <p class="lede">
-      I build perception systems that let machines understand and act in the
-      physical world. My current work sits at the intersection of computer
-      vision and robotics — from visual representation learning to
-      embodied agents that close the loop between seeing and doing.
+      A top-grade STEM student and published researcher working at the
+      intersection of computer vision and robotics. My current focus is on
+      medical image analysis — building models that detect disease in chest
+      X-rays — and on the control systems that let robots move with precision.
     </p>
     <p class="muted body-text">
-      I'm drawn to questions where the visual and the physical meet: How
-      should a robot represent what it sees in a way that's useful for
-      action? What does it mean for an embodied agent to "understand" a
-      scene? I try to answer these with rigorous experiments, clean code,
-      and papers that report what actually happened.
+      I pursue this through rigorous experiments, clean code, and papers that
+      report what actually happened. The through-line is perception that leads
+      to action: a model that sees better, or a robot that moves more accurately.
     </p>
 
     <hr class="hairline" />
@@ -31,14 +29,15 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
     <ol class="entry-list">
       <li class="entry">
         <div class="entry-main">
-          <h3 class="entry-title">B.Sc. in Computer Science</h3>
+          <h3 class="entry-title">High School Diploma (A-Levels)</h3>
           <p class="entry-meta">
-            <span class="authors">University Name</span>
+            <span class="authors">Haileybury Almaty</span>
             <span class="sep">·</span>
-            <span class="venue mono">2023 – 2027 (expected)</span>
+            <span class="venue mono">Aug 2023 – Jun 2025</span>
           </p>
           <p class="entry-desc muted">
-            Relevant coursework, honors, or focus area.
+            A-Levels: Computer Science (A*), Maths (A*), Further Maths (A*), Physics (A).
+            IELTS 8.0 · SAT 1550 (750 EBRW, 800 Math) · AP Calculus BC 5, AP CS A 5.
           </p>
         </div>
       </li>
@@ -54,23 +53,10 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
           <p class="entry-meta">
             <span class="authors">Organization</span>
             <span class="sep">·</span>
-            <span class="venue mono">2025 – present</span>
+            <span class="venue mono">Year – Year</span>
           </p>
           <p class="entry-desc muted">
             Description of responsibility and what came of it.
-          </p>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Role — Organization</h3>
-          <p class="entry-meta">
-            <span class="authors">Organization</span>
-            <span class="sep">·</span>
-            <span class="venue mono">2024 – 2025</span>
-          </p>
-          <p class="entry-desc muted">
-            Concise description of responsibility and outcome.
           </p>
         </div>
       </li>
@@ -84,40 +70,19 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
       <li class="entry">
         <div class="entry-main">
           <h3 class="entry-title">
-            <a href="#">Paper Title That Makes a Specific Claim</a>
+            <a href="https://ieeexplore.ieee.org/document/10898141">WeCAViT: A Weighted CNN model for Pneumonia Detection in Chest X-rays</a>
           </h3>
           <p class="entry-meta">
-            <span class="authors">Your Name, Coauthor One, Coauthor Two</span>
+            <span class="authors">Arnur Jumabekov, Maryam Yashtini</span>
             <span class="sep">·</span>
-            <span class="venue mono">Conference/Workshop 2026</span>
+            <span class="venue mono">13th IEEE ICCIP, March 2025</span>
           </p>
           <p class="entry-desc muted">
-            One-line description of what the paper shows and why it matters.
+            Hybrid CNN-CBAM-ViT architecture for pneumonia detection in chest X-rays.
           </p>
         </div>
         <div class="entry-links">
-          <a href="#" class="chip mono">PDF</a>
-          <a href="#" class="chip mono">Code</a>
-          <a href="#" class="chip mono">arXiv</a>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">
-            <a href="#">Another Paper on a Different Topic</a>
-          </h3>
-          <p class="entry-meta">
-            <span class="authors">Coauthor, Your Name</span>
-            <span class="sep">·</span>
-            <span class="venue mono">Venue 2025</span>
-          </p>
-          <p class="entry-desc muted">
-            Brief description of contribution and key result.
-          </p>
-        </div>
-        <div class="entry-links">
-          <a href="#" class="chip mono">PDF</a>
-          <a href="#" class="chip mono">Code</a>
+          <a href="https://ieeexplore.ieee.org/document/10898141" class="chip mono">DOI</a>
         </div>
       </li>
     </ol>
@@ -129,39 +94,30 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
     <ol class="entry-list">
       <li class="entry">
         <div class="entry-main">
-          <h3 class="entry-title">
-            <a href="#">Project Name — One-Line Descriptor</a>
-          </h3>
+          <h3 class="entry-title">WeCAViT</h3>
           <p class="entry-meta">
-            <span class="venue mono">computer vision · embodied AI</span>
+            <span class="venue mono">Python, PyTorch, Pandas, Scikit-Learn, Google Colab, Huggingface Transformers</span>
             <span class="sep">·</span>
-            <span class="mono">2025</span>
+            <span class="mono">Jun 2024 – Present</span>
           </p>
           <p class="entry-desc muted">
-            What you built, the key idea, and a concrete result or demo.
+            Hybrid CNN-CBAM-ViT model for pneumonia detection; ~4-5% accuracy &amp; F1 increase over SOTA CNNs/ViTs/hybrids.
+            &gt;17 ablation experiments, &gt;8 SOTA comparisons; authored research paper.
           </p>
-        </div>
-        <div class="entry-links">
-          <a href="#" class="chip mono">Code</a>
-          <a href="#" class="chip mono">Writeup</a>
         </div>
       </li>
       <li class="entry">
         <div class="entry-main">
-          <h3 class="entry-title">
-            <a href="#">Second Project</a>
-          </h3>
+          <h3 class="entry-title">QuantaSoil</h3>
           <p class="entry-meta">
-            <span class="venue mono">robotics</span>
+            <span class="venue mono">Python, Pandas, Scikit-Learn, Google Colab, OpenAI API</span>
             <span class="sep">·</span>
-            <span class="mono">2025 – present</span>
+            <span class="mono">Sep 2023 – Nov 2023</span>
           </p>
           <p class="entry-desc muted">
-            Description with a specific outcome or metric if available.
+            ML classifiers to predict optimal crop/fertilizer from soil data; &gt;95% accuracy.
+            Custom GPT-4 text prompts via OpenAI API; integrated in React web app.
           </p>
-        </div>
-        <div class="entry-links">
-          <a href="#" class="chip mono">Code</a>
         </div>
       </li>
     </ol>
@@ -184,14 +140,63 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
     <ol class="entry-list">
       <li class="entry">
         <div class="entry-main">
-          <h3 class="entry-title">Research Assistant</h3>
+          <h3 class="entry-title">Smart Pipe Inspection Robot — Research Assistant</h3>
           <p class="entry-meta">
-            <span class="authors">Lab / University Name</span>
+            <span class="authors">ARMS Lab, Nazarbayev University, Astana</span>
             <span class="sep">·</span>
-            <span class="venue mono">2025 – present</span>
+            <span class="venue mono">Aug 2025 – Present</span>
           </p>
           <p class="entry-desc muted">
-            What you worked on, methods used, and what came of it.
+            Developing Python API to control Dynamixel DC motors; custom path-following algorithms.
+          </p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Tensegrity Robot Project — Intern, Lead Programmer</h3>
+          <p class="entry-meta">
+            <span class="authors">ISSAI, Nazarbayev University, Astana</span>
+            <span class="sep">·</span>
+            <span class="venue mono">May 2024 – Jun 2024</span>
+          </p>
+          <p class="entry-desc muted">
+            C++ control firmware for Arduino; modular OOP architecture; PID control for linear actuators, &lt;5% position error.
+            Python pipelines for real-time position extraction via Serial Port for OptiTrack feedback.
+          </p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Pioneer Research Institute — Student Researcher</h3>
+          <p class="entry-meta">
+            <span class="authors">Supervised by Dr. Maryam Yashtini (Georgetown), Remote</span>
+            <span class="sep">·</span>
+            <span class="venue mono">Jun 2024 – Jan 2025</span>
+          </p>
+          <p class="entry-desc muted">
+            Literature review on CV in Healthcare; proposed and experimented on WeCAViT architecture.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Certifications</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Samsung Innovation Campus — Android Development Track</h3>
+          <p class="entry-meta">
+            <span class="venue mono">Java, Google Firebase SDK · 2020–2021</span>
+          </p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Microsoft AI Challenge — Machine Learning Track</h3>
+          <p class="entry-meta">
+            <span class="venue mono">Python, PyTorch, scikit-learn, pandas, NumPy, matplotlib · 2023</span>
           </p>
         </div>
       </li>
@@ -207,7 +212,7 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
           <p class="entry-meta">
             <span class="authors">University Name</span>
             <span class="sep">·</span>
-            <span class="venue mono">Spring 2025</span>
+            <span class="venue mono">Term Year</span>
           </p>
           <p class="entry-desc muted">
             Brief description of role and responsibilities.
@@ -222,12 +227,25 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
     <ol class="entry-list">
       <li class="entry">
         <div class="entry-main">
-          <h3 class="entry-title">Award or Honor Name</h3>
+          <h3 class="entry-title">ISEF Special Award</h3>
           <p class="entry-meta">
-            <span class="venue mono">Organization · 2025</span>
+            <span class="venue mono">Regeneron &amp; "Mawhiba" Foundation · 2025</span>
           </p>
-          <p class="entry-desc muted">
-            Context or reason for the recognition.
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Kazakhstan Republican Science Projects Fair (KazSEF) — Gold Medal</h3>
+          <p class="entry-meta">
+            <span class="venue mono">Top 0.7%, "Informatics" · 2025</span>
+          </p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">British Physics Olympiad — Silver Medal</h3>
+          <p class="entry-meta">
+            <span class="venue mono">Top ~10% worldwide · 2024</span>
           </p>
         </div>
       </li>
