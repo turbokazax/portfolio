@@ -153,14 +153,19 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 
   <!-- CV -->
   <section class="page-section" id="cv">
-    <h2 class="content-heading">Curriculum Vitae</h2>
+    <h2 class="content-heading">CV &amp; Portfolio</h2>
     <p class="lede">
-      You can download my full CV below, or browse the highlights throughout
-      this site.
+      My full background as a one-page CV, and a slide deck of my robotics &amp; project work.
     </p>
-    <div class="entry-links" style="margin-top: var(--space-4);">
-      <a href="/Arnur_Jumabekov_Resume-1.pdf" class="chip mono">Download CV (PDF)</a>
-      <a href="#" class="chip mono">STEM Portfolio (Slides)</a>
+    <div class="cv-downloads">
+      <a href="/Arnur_Jumabekov_Resume-1.pdf" class="download-chip mono">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+      <a href="#" class="download-chip download-chip--ghost mono">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="12" x2="12" y2="17"/></svg>
+        STEM Portfolio
+      </a>
     </div>
 
     <hr class="hairline" />
