@@ -13,7 +13,10 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
-    "astro": "^7.1.6"
+    "astro": "^7.1.6",
+    "pdf-parse": "^1.1.1",
+    "pdf2md": "^1.0.2",
+    "pdfjs-dist": "^6.2.108"
   },
   "devDependencies": {
     "playwright": "^1.62.1"
