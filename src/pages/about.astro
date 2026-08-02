@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="About — Arnur Jumabekov"
+  description="Undergrad researcher at the intersection of computer vision and robotics — medical image analysis, robotic control, and the perception-action loop."
+  active="main"
+>
+  <section class="page-section" id="about">
+    <h2 class="content-heading">About</h2>
+    <p class="lede">
+      I'm an undergraduate researcher working at the intersection of computer
+      vision and robotics — building models that read medical images and
+      control systems that move robots with precision.
+    </p>
+    <p class="muted body-text">
+      My current focus is the perception-action loop: a vision model that
+      detects disease in chest X-rays, and a control stack that turns motor
+      commands into accurate motion. Both demand clean code, careful
+      experiments, and results that survive contact with the data.
+    </p>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Current Focus</h2>
+    <ol class="entry-list">
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Medical Image Analysis</h3>
+          <p class="entry-meta">
+            <span class="venue mono">Hybrid CNN-ViT architectures · Aug 2024 – Present</span>
+          </p>
+          <p class="entry-desc muted">
+            Designing and ablating hybrid vision models for pneumonia detection
+            in chest X-rays — published work on weighting CNN features before
+            vision-transformer encoding.
+          </p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">Robotic Control</h3>
+          <p class="entry-meta">
+            <span class="venue mono">Dynamixel motors · path following · Aug 2025 – Present</span>
+          </p>
+          <p class="entry-desc muted">
+            Building a Python API to control Dynamixel DC motors and writing
+            custom path-following algorithms for a pipe-inspection robot at
+            Nazarbayev University's ARMS Lab.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Research Interests</h2>
+    <ul class="prose-tags">
+      <li class="chip mono">Computer Vision</li>
+      <li class="chip mono">Medical Image Analysis</li>
+      <li class="chip mono">Robotics</li>
+      <li class="chip mono">Control Systems</li>
+      <li class="chip mono">Deep Learning</li>
+      <li class="chip mono">Perception-Action Loop</li>
+    </ul>
+  </section>
+</Layout>

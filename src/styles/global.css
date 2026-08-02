@@ -734,7 +734,7 @@ a:hover {
    BLOG POST — Reading view (centered prose column)
    ============================================================ */
 
-.blog-post-view .Topbar {
+.blog-post-view .topbar {
   border-bottom: 1px solid var(--hairline);
 }
 
