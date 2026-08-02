@@ -1,0 +1,135 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const domain = "https://jubaportfolio.vercel.app";
+---
+
+<Layout
+  title="Sitemap — Arnur Jumabekov"
+  description="A complete map of every page on this site."
+  active="main"
+>
+  <section class="page-section sitemap" id="sitemap">
+    <h2 class="content-heading">Sitemap</h2>
+    <p class="lede">
+      Every page on this site. For search engines, see the
+      <a href="/sitemap-index.xml" class="sitemap-xml-link">XML&nbsp;sitemap</a>.
+    </p>
+
+    <hr class="hairline" />
+
+    <h3 class="sitemap-group-label">Pages</h3>
+    <ul class="sitemap-list">
+      <li class="sitemap-item">
+        <a href="/">Home</a>
+        <span class="sitemap-desc muted">About, education, publications, projects, CV</span>
+      </li>
+      <li class="sitemap-item">
+        <a href="/about/">About</a>
+        <span class="sitemap-desc muted">Research narrative and experience</span>
+      </li>
+      <li class="sitemap-item">
+        <a href="/sitemap/">Sitemap</a>
+        <span class="sitemap-desc muted">You are here</span>
+      </li>
+    </ul>
+
+    <hr class="hairline" />
+
+    <h3 class="sitemap-group-label">Blog</h3>
+    <ul class="sitemap-list">
+      {
+        posts.map((post) => (
+          <li class="sitemap-item">
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <span class="sitemap-desc muted">{post.data.description}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <hr class="hairline" />
+
+    <h3 class="sitemap-group-label">For Robots</h3>
+    <ul class="sitemap-list">
+      <li class="sitemap-item">
+        <a href="/sitemap-index.xml">XML Sitemap</a>
+        <span class="sitemap-desc muted">Machine-readable index for crawlers</span>
+      </li>
+      <li class="sitemap-item">
+        <a href="/robots.txt">robots.txt</a>
+        <span class="sitemap-desc muted">Crawler directives</span>
+      </li>
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  .sitemap-group-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+  }
+
+  .sitemap-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .sitemap-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .sitemap-item:last-child {
+    border-bottom: none;
+  }
+
+  .sitemap-item a {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .sitemap-item a:hover {
+    color: var(--accent);
+    opacity: 1;
+  }
+
+  .sitemap-desc {
+    font-size: var(--text-sm);
+  }
+
+  .sitemap-xml-link {
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .sitemap-xml-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 1;
+  }
+</style>
