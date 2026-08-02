@@ -44,3 +44,8 @@ but `<Image />` is the right call if the site adds more images later.
 
 - Asset not resized in this pass — no image tooling available in the task scope.
 - Documented here so the resize can be done in the next asset pass.
+
+## Status update
+
+- Avatar `<img>` in `src/layouts/Layout.astro` now has explicit `width="120" height="120"` attributes to reduce wasted paint.
+- Resize recommendation: 256×256 WebP (~8–15 KB vs 92 KB) — pending image tooling.

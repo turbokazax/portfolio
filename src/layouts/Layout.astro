@@ -1,5 +1,6 @@
 ---
 import Topbar from "../components/Topbar.astro";
+import Analytics from "@vercel/analytics/astro";
 import "../styles/global.css";
 
 interface Props {
@@ -57,6 +58,7 @@ const navLinks = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
+    <Analytics />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -74,8 +76,8 @@ const navLinks = [
               class="avatar"
               src="/profile.jpg"
               alt="Profile photo"
-              width="140"
-              height="140"
+              width="120"
+              height="120"
             />
           </div>
           <h1 class="sidebar-name">Arnur Jumabekov</h1>
@@ -164,6 +166,26 @@ const navLinks = [
         const hash = window.location.hash.replace("#", "");
         showSection(hash || "main");
       });
+
+      // Back-to-top toggle (mobile only)
+      (function () {
+        var btn = document.querySelector(".back-to-top");
+        if (!btn) return;
+        var THRESHOLD = 300;
+        var onScroll = function () {
+          btn.classList.toggle("is-visible", window.scrollY > THRESHOLD);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+        btn.addEventListener("click", function () {
+          var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+        });
+      })();
     </script>
+
+    <button class="back-to-top" aria-label="Back to top" type="button">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
   </body>
 </html>

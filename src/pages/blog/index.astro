@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Layout title="Blog — Arnur Jumabekov" description="Notes on research, conferences, and building things." active="blog">
+  <h2 class="content-heading">Blog</h2>
+  <p class="lede">
+    Notes on research, papers, and building things. Shorter and more
+    frequent than publications.
+  </p>
+  <ol class="entry-list">
+    {posts.map((post) => (
+      <li class="entry">
+        <div class="entry-main">
+          <h3 class="entry-title">
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          </h3>
+          <p class="entry-meta">
+            <time class="mono" datetime={post.data.date.toISOString().slice(0, 10)}>
+              {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+            </time>
+          </p>
+          <p class="entry-desc muted">{post.data.description}</p>
+          {post.data.tags.length > 0 && (
+            <ul class="prose-tags">
+              {post.data.tags.map((tag) => (
+                <li class="chip mono">{tag}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+</Layout>
