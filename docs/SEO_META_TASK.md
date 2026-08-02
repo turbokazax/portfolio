@@ -43,3 +43,13 @@ right after the existing `<title>{title}</title>` line.
 - `twitter:card: summary_large_image` — the only card type that shows the OG
   image at full width, consistent with the minimal aesthetic.
 - `theme-color` matches the accent for the browser tab on mobile.
+
+## Status
+
+IMPLEMENTED in `src/layouts/Layout.astro` on 2026-08-02. All OG, Twitter, and
+misc-SEO tags added right after `<meta name="description">`, using the existing
+`{title}` / `{description}` props (no hardcoded copy).
+
+REMAINING: create `public/og-image.png` (1200 x 630) — the asset referenced by
+`og:image` / `twitter:image`. Until it exists, the tags resolve to a 404 on that
+URL; social previews will fall back to text-only.

@@ -37,11 +37,28 @@ const navLinks = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jubaportfolio.vercel.app/" />
+    <meta property="og:image" content="https://jubaportfolio.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Arnur Jumabekov — Researcher" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://jubaportfolio.vercel.app/og-image.png" />
+    <!-- Misc SEO -->
+    <meta name="theme-color" content="#3b37c9" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div class="app">
       <!-- GLOBAL TOP NAVBAR -->
       <Topbar active={active} links={navLinks} />
@@ -96,7 +113,7 @@ const navLinks = [
       </aside>
 
         <!-- RIGHT: Content (one section at a time) -->
-        <main class="content">
+        <main class="content" id="main-content">
           <slot />
         </main>
       </div>
