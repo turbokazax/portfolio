@@ -5,9 +5,36 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  date?: string;
 }
 
-const { title = "Researcher", description = "" } = Astro.props;
+const {
+  title = "Researcher",
+  description = "",
+  date,
+} = Astro.props;
+
+const ogImage = "https://jubaportfolio.vercel.app/og-image.png";
+const pageUrl = Astro.url.href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  author: {
+    "@type": "Person",
+    name: "Arnur Jumabekov",
+    url: "https://jubaportfolio.vercel.app/",
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Arnur Jumabekov",
+  },
+  ...(date && { datePublished: date }),
+  image: ogImage,
+  mainEntityOfPage: pageUrl,
+};
 ---
 
 <!--
@@ -22,9 +49,26 @@ const { title = "Researcher", description = "" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Arnur Jumabekov — Researcher" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <!-- Misc SEO -->
+    <link rel="canonical" href={pageUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="blog-post-view">
     <Topbar links={[

@@ -8,6 +8,20 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 ---
 
 <Layout title="Arnur Jumabekov — Researcher" description="Aspiring researcher — computer vision & robotics. Published work on medical image analysis and robotic control." active="main">
+  <!-- JSON-LD Person schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Arnur Jumabekov",
+    "url": "https://jubaportfolio.vercel.app/",
+    "description": "Undergraduate researcher at the intersection of computer vision and robotics. Published work on medical image analysis and robotic control.",
+    "sameAs": [
+      "https://linkedin.com/in/arnur-jumabekov",
+      "https://github.com/turbokazax",
+      "https://orcid.org/0009-0006-2199-6865"
+    ]
+  })} />
+
   <!-- MAIN / ABOUT -->
   <section class="page-section" id="main">
     <h2 class="content-heading">About Me</h2>
