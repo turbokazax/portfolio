@@ -1,43 +1,34 @@
-# Astro Starter Kit: Minimal
+# jubaportfolio
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Personal site for Arnur Jumabekov — publications, projects, CV, and a blog.
+Live at [jubaportfolio.vercel.app](https://jubaportfolio.vercel.app).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+Astro 7 (static output) · MDX content collections · `@astrojs/rss` + `@astrojs/sitemap` ·
+Vercel Analytics · deployed on Vercel.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Commands
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Command           | Action                               |
+| :---------------- | :----------------------------------- |
+| `npm install`     | Install dependencies                 |
+| `npm run dev`     | Dev server at `localhost:4321`       |
+| `npm run build`   | Production build to `./dist/`        |
+| `npm run preview` | Preview the production build locally |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Where content lives
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **CV facts** (education, experience, projects, honors, publication) — `src/data/cv.ts`.
+  The homepage renders from this file; do not hardcode facts in the markup.
+  Keep it in sync with `public/arnur-jumabekov-cv.pdf`.
+- **Blog posts** — `src/content/blog/*.mdx`. Frontmatter schema in `src/content.config.ts`.
+  Set `draft: true` to keep a post out of the build, the sitemap, and the RSS feed.
+- **Nav links** — `src/nav.ts` (one definition, used by both layouts).
+- **Design system** — `src/styles/global.css`; the rationale is documented in `DESIGN.md`.
+- **Shared `<head>`** — `src/components/BaseHead.astro` (meta, OG, fonts, theme init).
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Deploying
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Pushing to `main` triggers a Vercel build. `astro.config.mjs` sets `site`, which the
+sitemap and Open Graph URLs depend on — update it if the domain changes.

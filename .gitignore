@@ -26,9 +26,6 @@ pnpm-debug.log*
 
 # --- private / unrelated to website ---
 
-# personal resume
-Arnur_Jumabekov_Resume-1.pdf
-
 # AI tooling configs
 .claude/
 .codex/
@@ -40,9 +37,10 @@ Arnur_Jumabekov_Resume-1.pdf
 .screenshots/
 .vercel/
 
-# scratch utilities
-check.mjs
-
 # generated artifacts
 graphify-out/
 docs/superpowers/
+
+# local CV source (published copy lives in public/)
+/Arnur Jumabekov CV.pdf
+about_me.md

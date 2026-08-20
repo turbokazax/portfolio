@@ -1,5 +1,5 @@
 {
-  "name": "better-belt",
+  "name": "jubaportfolio",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,20 +9,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "test": "node test-site.mjs"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^7.1.6",
-    "pdf-parse": "^1.1.1",
-    "pdf2md": "^1.0.2",
-    "pdfjs-dist": "^6.2.108"
-  },
-  "devDependencies": {
-    "playwright": "^1.62.1"
+    "astro": "^7.1.6"
   }
 }
