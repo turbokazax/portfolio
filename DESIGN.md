@@ -6,7 +6,7 @@ colors:
   paper-elevated: "#ffffff"
   ink: "#1a1a1a"
   ink-muted: "#5c5c5c"
-  ink-faint: "#8a8a8a"
+  ink-faint: "#6e6e6e"
   hairline: "#e2e2dd"
   accent: "#3b37c9"
   accent-soft-light: "rgba(59, 55, 201, 0.08)"
@@ -14,7 +14,7 @@ colors:
   graphite-elevated: "#1e1e1e"
   paper-dark: "#ededed"
   ink-dark-muted: "#a3a3a3"
-  ink-dark-faint: "#6b6b6b"
+  ink-dark-faint: "#9a9a9a"
   hairline-dark: "#2a2a2a"
   accent-dark: "#7b78e8"
   accent-soft-dark: "rgba(123, 120, 232, 0.12)"
@@ -110,7 +110,7 @@ A restrained palette: warm neutrals plus one accent. Two complete schemes — li
 - **Paper Elevated** (`#ffffff` light / `#1e1e1e` dark): Surfaces that sit above the page (theme toggle button).
 - **Ink** (`#1a1a1a` light / `#ededed` dark): Body and display text. Near-black on paper, paper-on-graphite.
 - **Ink Muted** (`#5c5c5c` / `#a3a3a3`): Secondary text — ledes, descriptions.
-- **Ink Faint** (`#8a8a8a` / `#6b6b6b`): Metadata — dates, venues, copyright. Recedes deliberately.
+- **Ink Faint** (`#6e6e6e` / `#9a9a9a`): Metadata — dates, venues, copyright. Recedes deliberately.
 - **Hairline** (`#e2e2dd` / `#2a2a2a`): Section dividers, avatar ring, chip borders. The lightest perceptible line.
 - **Accent Soft** (`rgba(59,55,201,0.08)` / `rgba(123,120,232,0.12)`): Hover background for social icons. A whisper of the accent.
 

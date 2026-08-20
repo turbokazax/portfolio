@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogType?: string;
+}
+
+const { title, description, ogType = "website" } = Astro.props;
+const ogImage = new URL("/og-image.png", Astro.site ?? Astro.url.origin).href;
+const pageUrl = Astro.url.href;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Arnur Jumabekov — Researcher" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<!-- Misc SEO -->
+<meta name="theme-color" content="#3b37c9" />
+<link rel="canonical" href={pageUrl} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="alternate" type="application/rss+xml" title="Arnur Jumabekov — Blog" href="/blog/rss.xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+/>
+<title>{title}</title>
+<!-- Theme init must run in <head>, before first paint, or every page flashes light. -->
+<script is:inline>
+  (function () {
+    const stored = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute(
+      "data-theme",
+      stored || (prefersDark ? "dark" : "light")
+    );
+  })();
+</script>

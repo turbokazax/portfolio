@@ -3,8 +3,8 @@
    Direction contract seed: 1ab788c1
    ============================================================ */
 
-/* --- Fonts: Fraunces (display serif) + Inter (body) + JetBrains Mono (metadata) --- */
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+/* --- Fonts: Fraunces (display serif) + Inter (body) + JetBrains Mono (metadata).
+       Loaded via <link> in BaseHead.astro — an @import here would chain-block. --- */
 
 /* --- Color strategy: Restrained (neutrals + one accent) --- */
 :root {
@@ -13,7 +13,7 @@
   --bg-elevated: #ffffff;
   --ink: #1a1a1a;
   --ink-muted: #5c5c5c;
-  --ink-faint: #8a8a8a;
+  --ink-faint: #6e6e6e; /* 4.88:1 on --bg; #767676 is 4.34:1 and fails AA */
   --hairline: #e2e2dd;
   --accent: #3b37c9;
   --accent-soft: rgba(59, 55, 201, 0.08);
@@ -49,6 +49,7 @@
   --space-24: 6rem;
 
   /* Layout */
+  --topbar-h: 81px; /* space-5 padding x2 + 40px toggle + 1px border */
   --measure: 68ch;
   --page-padding: var(--space-6);
   --radius-sm: 6px;
@@ -66,7 +67,7 @@
   --bg-elevated: #1e1e1e;
   --ink: #ededed;
   --ink-muted: #a3a3a3;
-  --ink-faint: #6b6b6b;
+  --ink-faint: #9a9a9a; /* 6.49:1 on dark --bg */
   --hairline: #2a2a2a;
   --accent: #7b78e8;
   --accent-soft: rgba(123, 120, 232, 0.12);
@@ -335,7 +336,7 @@ a:hover {
 
 .shell {
   display: flex;
-  min-height: calc(100vh - 61px); /* subtract topbar height */
+  min-height: calc(100vh - var(--topbar-h));
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 var(--space-8);
@@ -344,10 +345,10 @@ a:hover {
 /* --- Sidebar (left) --- */
 .sidebar {
   position: sticky;
-  top: 61px; /* below topbar */
+  top: var(--topbar-h); /* below topbar */
   width: 300px;
   min-width: 300px;
-  height: calc(100vh - 61px);
+  height: calc(100vh - var(--topbar-h));
   display: flex;
   flex-direction: column;
   padding: var(--space-10) var(--space-6);
@@ -520,28 +521,12 @@ a:hover {
   padding: var(--space-10) var(--space-10) var(--space-16) var(--space-12);
 }
 
-/* --- Page sections (one visible at a time) --- */
+/* --- Page sections: all stacked; the navbar anchors scroll to them. --- */
 .page-section {
-  display: none;
+  scroll-margin-top: var(--topbar-h);
 }
-.page-section:first-of-type {
-  display: block;
-  animation: section-rise var(--duration-base) var(--ease-out);
-}
-.page-section.is-visible {
-  display: block;
-  animation: section-rise var(--duration-base) var(--ease-out);
-}
-
-@keyframes section-rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.page-section + .page-section {
+  margin-top: var(--space-16);
 }
 
 /* --- Content headings --- */
@@ -724,59 +709,6 @@ a:hover {
   border-color: var(--accent);
   color: var(--accent);
   opacity: 1;
-}
-
-/* --- Albums --- */
-.album-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
-}
-
-.album-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: var(--space-2);
-}
-
-.album-tile {
-  aspect-ratio: 1;
-  border-radius: var(--radius-sm);
-  background: var(--bg-elevated);
-  border: 1px solid var(--hairline);
-  overflow: hidden;
-  position: relative;
-  transition:
-    transform var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out);
-}
-
-.album-tile:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-}
-
-.album-meta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-4);
-  margin-top: var(--space-3);
-  font-size: var(--text-sm);
-}
-
-.album-name {
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.album-count {
-  color: var(--ink-faint);
-  font-size: var(--text-xs);
-  white-space: nowrap;
 }
 
 /* ============================================================
@@ -1039,14 +971,6 @@ a:hover {
 
   .theme-toggle {
     position: static;
-  }
-
-  .album-list {
-    gap: var(--space-10);
-  }
-
-  .album-grid {
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   }
 
   .blog-post {

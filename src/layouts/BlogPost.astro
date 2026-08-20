@@ -1,5 +1,7 @@
 ---
+import BaseHead from "../components/BaseHead.astro";
 import Topbar from "../components/Topbar.astro";
+import { navLinks } from "../nav";
 import "../styles/global.css";
 
 interface Props {
@@ -14,7 +16,7 @@ const {
   date,
 } = Astro.props;
 
-const ogImage = "https://jubaportfolio.vercel.app/og-image.png";
+const ogImage = new URL("/og-image.png", Astro.site ?? Astro.url.origin).href;
 const pageUrl = Astro.url.href;
 
 const jsonLd = {
@@ -41,45 +43,19 @@ const jsonLd = {
   DIRECTION CONTRACT — seed key: 1ab788c1
   SURFACE: Blog post reading view. Global topbar (shared Topbar component)
   + a single centered reading column (~68ch). Inherits Research Atelier world.
-  Mode: Read.
+  Topbar anchors point back at the homepage sections. Mode: Read.
 -->
 <!doctype html>
 <html lang="en" data-theme="light">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content={pageUrl} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Arnur Jumabekov — Researcher" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    <!-- Misc SEO -->
-    <link rel="canonical" href={pageUrl} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <title>{title}</title>
+    <BaseHead title={title} description={description} ogType="article" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="blog-post-view">
-    <Topbar links={[
-      { label: "Publications", id: "publications" },
-      { label: "Projects", id: "projects" },
-      { label: "CV", id: "cv" },
-      { label: "Blog", id: "blog" },
-      { label: "Albums", id: "albums" },
-    ]} />
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <Topbar links={navLinks} active="blog" />
 
-    <main class="blog-post">
+    <main class="blog-post" id="main-content">
       <article class="prose">
         <slot />
       </article>

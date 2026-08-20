@@ -1,16 +1,15 @@
 ---
+import BaseHead from "../components/BaseHead.astro";
 import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="en" data-theme="light">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Page not found — Arnur Jumabekov" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <title>404 — Arnur Jumabekov</title>
+    <BaseHead
+      title="404 — Arnur Jumabekov"
+      description="Page not found — Arnur Jumabekov"
+    />
     <style>
       body {
         margin: 0;
