@@ -33,14 +33,13 @@ const pageUrl = Astro.url.href;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
 <link rel="alternate" type="application/rss+xml" title="Arnur Jumabekov — Blog" href="/blog/rss.xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-/>
 <title>{title}</title>
-<!-- Theme init must run in <head>, before first paint, or every page flashes light. -->
+<!--
+  This runs BEFORE the Google Fonts <link> on purpose. A pending stylesheet blocks
+  execution of every script after it, so a script placed below the font link cannot
+  run until Google Fonts has already arrived — which would make both the theme init
+  and the skeleton wait on a third-party request.
+-->
 <script is:inline>
   (function () {
     const stored = localStorage.getItem("theme");
@@ -49,5 +48,63 @@ const pageUrl = Astro.url.href;
       "data-theme",
       stored || (prefersDark ? "dark" : "light")
     );
+
+    // Font-loading skeleton. Fraunces/Inter/JetBrains Mono load with display=swap
+    // and no metric-matched fallback, so text paints in Georgia/system-ui and
+    // reflows when the webfonts land. Mask that gap with a pulsing placeholder
+    // painted over the real (already-in-the-DOM) content — never hide content and
+    // never do anything on a warm repeat visit.
+    try {
+      var root = document.documentElement;
+      // Warm visit: keyed on sessionStorage rather than document.fonts.check(),
+      // which is unreliable here — the stylesheet has not parsed yet, so the
+      // FontFaceSet is empty and check() answers about fallbacks, not about Inter.
+      var seen = null;
+      try { seen = sessionStorage.getItem("fontsLoaded"); } catch (e) {}
+
+      if (document.fonts && !seen) {
+        root.classList.add("fonts-loading");
+        root.setAttribute("aria-busy", "true");
+
+        var cleared = false;
+        var clearSkeleton = function () {
+          if (cleared) return;
+          cleared = true;
+          root.classList.remove("fonts-loading");
+          root.removeAttribute("aria-busy");
+          try { sessionStorage.setItem("fontsLoaded", "1"); } catch (e) {}
+        };
+
+        // Called by the companion script below the font <link>. Reaching it means
+        // the stylesheet has loaded (or failed), so the @font-face rules now exist
+        // and we can wait on the real families. Waiting on document.fonts.ready
+        // instead would be a no-op: at this point the set is empty, so it resolves
+        // on the next microtask and the skeleton would clear before painting.
+        window.__awaitFontFaces = function () {
+          Promise.all([
+            document.fonts.load("400 1em Inter"),
+            document.fonts.load("500 1em Fraunces"),
+          ]).then(clearSkeleton, clearSkeleton);
+        };
+
+        // Backstops: never let a hung font request leave the page ghosted.
+        window.addEventListener("load", clearSkeleton, { once: true });
+        setTimeout(clearSkeleton, 2000);
+      }
+    } catch (e) {
+      // document.fonts unsupported (or any other failure): no skeleton at all.
+      // The real content is already in the DOM and stays fully visible.
+    }
   })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+/>
+<!-- Blocked by the stylesheet above, which is exactly the signal we want: this
+     line only executes once the @font-face rules exist (or the request failed). -->
+<script is:inline>
+  if (window.__awaitFontFaces) window.__awaitFontFaces();
 </script>

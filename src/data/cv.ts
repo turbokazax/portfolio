@@ -35,8 +35,9 @@ export const education = [
     title: "High School Diploma (International A-Levels)",
     org: "Haileybury Almaty",
     dates: "Aug 2023 – Jun 2025",
-    desc: "100% merit scholarship (≈$80k). A-Levels: Further Mathematics (A*), Mathematics (A*), Computer Science (A*), Physics (A), including probability and statistics coursework.",
+    desc: "100% merit scholarship (≈$80k), including probability and statistics coursework.",
     scoreGroups: [
+      { label: "A-Levels", scores: ["Further Mathematics: A*", "Mathematics: A*", "Computer Science: A*", "Physics: A"] },
       { label: "Standardized Tests", scores: ["SAT: 1550 (Math 800)", "IELTS: 8.0"] },
       { label: "AP Exams", scores: ["Calc BC: 5", "CS A: 5"] },
     ],

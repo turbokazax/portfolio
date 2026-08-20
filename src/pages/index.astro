@@ -97,16 +97,14 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 
     <hr class="hairline" />
 
-    <h2 class="content-heading">Mentoring &amp; Teaching</h2>
+    <h2 class="content-heading">Honors &amp; Awards</h2>
     <ol class="entry-list">
-      {mentoring.map((item) => (
+      {honors.map((item) => (
         <li class="entry">
           <div class="entry-main">
             <h3 class="entry-title">{item.title}</h3>
             <p class="entry-meta">
-              <span class="authors">{item.org}</span>
-              <span class="sep">·</span>
-              <span class="venue mono">{item.dates}</span>
+              <span class="venue mono">{item.meta}</span>
             </p>
             <p class="entry-desc muted">{item.desc}</p>
           </div>
@@ -142,46 +140,8 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
     </ol>
   </section>
 
-  <!-- PROJECTS -->
-  <section class="page-section" id="projects">
-    <h2 class="content-heading">Projects</h2>
-    <ol class="entry-list">
-      {projects.map((item) => (
-        <li class="entry">
-          <div class="entry-main">
-            <h3 class="entry-title">{item.title}</h3>
-            <p class="entry-meta">
-              <span class="venue mono">{item.stack}</span>
-              <span class="sep">·</span>
-              <span class="mono">{item.dates}</span>
-            </p>
-            <p class="entry-desc muted">{item.desc}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
-  </section>
-
   <!-- CV -->
   <section class="page-section" id="cv">
-    <h2 class="content-heading">CV &amp; Portfolio</h2>
-    <p class="lede">
-      A one-page CV covering research, projects, and technical experience — and
-      a slide deck of my robotics &amp; project work.
-    </p>
-    <div class="cv-downloads">
-      <a href="/arnur-jumabekov-cv.pdf" class="download-chip mono">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download CV
-      </a>
-      <a href="https://docs.google.com/presentation/d/13nTo5pTaWjoK3b-0OeL3S1p8OkDk3izQJ1a37izX4Jc/edit?usp=sharing" class="download-chip download-chip--ghost mono" target="_blank" rel="noopener noreferrer">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="12" x2="12" y2="17"/></svg>
-        STEM Portfolio
-      </a>
-    </div>
-
-    <hr class="hairline" />
-
     <h2 class="content-heading">Research &amp; Engineering Experience</h2>
     <ol class="entry-list">
       {experience.map((item) => (
@@ -217,14 +177,54 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 
     <hr class="hairline" />
 
-    <h2 class="content-heading">Honors &amp; Awards</h2>
+    <h2 class="content-heading">CV &amp; Portfolio</h2>
+    <p class="lede">
+      A one-page CV covering research, projects, and technical experience — and
+      a slide deck of my robotics &amp; project work.
+    </p>
+    <div class="cv-downloads">
+      <a href="/arnur-jumabekov-cv.pdf" class="download-chip mono">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+      <a href="https://docs.google.com/presentation/d/13nTo5pTaWjoK3b-0OeL3S1p8OkDk3izQJ1a37izX4Jc/edit?usp=sharing" class="download-chip download-chip--ghost mono" target="_blank" rel="noopener noreferrer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="12" x2="12" y2="17"/></svg>
+        STEM Portfolio
+      </a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="page-section" id="projects">
+    <h2 class="content-heading">Projects</h2>
     <ol class="entry-list">
-      {honors.map((item) => (
+      {projects.map((item) => (
         <li class="entry">
           <div class="entry-main">
             <h3 class="entry-title">{item.title}</h3>
             <p class="entry-meta">
-              <span class="venue mono">{item.meta}</span>
+              <span class="venue mono">{item.stack}</span>
+              <span class="sep">·</span>
+              <span class="mono">{item.dates}</span>
+            </p>
+            <p class="entry-desc muted">{item.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <hr class="hairline" />
+
+    <h2 class="content-heading">Mentoring &amp; Teaching</h2>
+    <ol class="entry-list">
+      {mentoring.map((item) => (
+        <li class="entry">
+          <div class="entry-main">
+            <h3 class="entry-title">{item.title}</h3>
+            <p class="entry-meta">
+              <span class="authors">{item.org}</span>
+              <span class="sep">·</span>
+              <span class="venue mono">{item.dates}</span>
             </p>
             <p class="entry-desc muted">{item.desc}</p>
           </div>

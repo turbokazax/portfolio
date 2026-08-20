@@ -1,6 +1,6 @@
 export const navLinks = [
   { label: "Publications", id: "publications" },
-  { label: "Projects", id: "projects" },
   { label: "CV", id: "cv" },
+  { label: "Projects", id: "projects" },
   { label: "Blog", id: "blog" },
 ];

@@ -59,6 +59,7 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 150ms;
   --duration-base: 300ms;
+  --duration-pulse: 1500ms;
 }
 
 /* --- Dark scheme — graphite --- */
@@ -1145,6 +1146,94 @@ a:hover {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+/* ============================================================
+   SKELETON — font-loading placeholders
+   The only real loading gap on this static site: Fraunces/Inter/
+   JetBrains Mono load with display=swap and no metric-matched
+   fallback, so text can paint in Georgia/system-ui and reflow when
+   the webfonts arrive. html.fonts-loading (set by the pre-paint
+   script in BaseHead.astro, cleared on fonts.ready/load/timeout) masks
+   the REAL elements in place as pulsing ghost bars. No injected DOM,
+   no layout shift, no content ever hidden from no-JS users or crawlers
+   — the class is JS-only and never present in the static HTML.
+   ============================================================ */
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+html.fonts-loading .content-heading,
+html.fonts-loading .content-heading *,
+html.fonts-loading .lede,
+html.fonts-loading .lede *,
+html.fonts-loading .body-text,
+html.fonts-loading .body-text *,
+html.fonts-loading .entry-title,
+html.fonts-loading .entry-title *,
+html.fonts-loading .entry-meta,
+html.fonts-loading .entry-meta *,
+html.fonts-loading .entry-desc,
+html.fonts-loading .entry-desc *,
+html.fonts-loading .chip,
+html.fonts-loading .score-group-label,
+html.fonts-loading .sidebar-name,
+html.fonts-loading .sidebar-name *,
+html.fonts-loading .sidebar-tagline,
+html.fonts-loading .sidebar-tagline *,
+html.fonts-loading .sidebar-bio,
+html.fonts-loading .sidebar-bio *,
+html.fonts-loading .sidebar-location {
+  color: transparent !important;
+  border-color: transparent !important;
+}
+
+html.fonts-loading .content-heading,
+html.fonts-loading .lede,
+html.fonts-loading .body-text,
+html.fonts-loading .entry-title,
+html.fonts-loading .entry-meta,
+html.fonts-loading .entry-desc,
+html.fonts-loading .chip,
+html.fonts-loading .score-group-label,
+html.fonts-loading .sidebar-name,
+html.fonts-loading .sidebar-tagline,
+html.fonts-loading .sidebar-bio,
+html.fonts-loading .sidebar-location {
+  background-color: var(--hairline);
+  border-radius: var(--radius-sm);
+  animation: skeleton-pulse var(--duration-pulse) var(--ease-out) infinite;
+}
+
+html.fonts-loading .avatar {
+  background-color: var(--hairline);
+  animation: skeleton-pulse var(--duration-pulse) var(--ease-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.fonts-loading .content-heading,
+  html.fonts-loading .lede,
+  html.fonts-loading .body-text,
+  html.fonts-loading .entry-title,
+  html.fonts-loading .entry-meta,
+  html.fonts-loading .entry-desc,
+  html.fonts-loading .chip,
+  html.fonts-loading .score-group-label,
+  html.fonts-loading .sidebar-name,
+  html.fonts-loading .sidebar-tagline,
+  html.fonts-loading .sidebar-bio,
+  html.fonts-loading .sidebar-location,
+  html.fonts-loading .avatar {
+    animation: none !important;
+    opacity: 1 !important;
+  }
 }
 
 @media (min-width: 769px) {

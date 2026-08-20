@@ -1,0 +1,98 @@
+<!--
+  Source artwork for public/og-image.png (the og:image / Twitter card shown
+  when this site is shared on social platforms).
+
+  This is the exact HTML that was screenshotted to produce the committed PNG.
+  To regenerate the PNG, see the "Regenerating the OG image" section in
+  README.md. Short version: serve this directory over HTTP, load this file
+  in a headless browser at a 1200x630 viewport, and screenshot the <body>.
+-->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        width: 1200px;
+        height: 630px;
+        background: #fafaf7;
+        color: #1a1a1a;
+        font-family: "Inter", system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 88px 96px;
+        position: relative;
+        overflow: hidden;
+      }
+      .rule {
+        width: 72px;
+        height: 4px;
+        background: #3b37c9;
+        margin-bottom: 40px;
+      }
+      h1 {
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 500;
+        font-size: 92px;
+        letter-spacing: -0.045em;
+        line-height: 1;
+        margin-bottom: 28px;
+      }
+      .tagline {
+        font-size: 34px;
+        color: #5c5c5c;
+        letter-spacing: -0.015em;
+        margin-bottom: 56px;
+      }
+      .meta {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 21px;
+        color: #6e6e6e;
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .meta .dot { color: #c9c9c2; }
+      .url {
+        position: absolute;
+        right: 96px;
+        bottom: 88px;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 20px;
+        color: #3b37c9;
+      }
+      .corner {
+        position: absolute;
+        top: -180px;
+        right: -180px;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        background: rgba(59, 55, 201, 0.06);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="corner"></div>
+    <div class="rule"></div>
+    <h1>Arnur Jumabekov</h1>
+    <p class="tagline">Machine learning &middot; computer vision &middot; robotics</p>
+    <div class="meta">
+      <span>CUHK</span>
+      <span class="dot">/</span>
+      <span>IEEE-published</span>
+      <span class="dot">/</span>
+      <span>Regeneron ISEF 2025</span>
+    </div>
+    <div class="url">jubaportfolio.vercel.app</div>
+  </body>
+</html>

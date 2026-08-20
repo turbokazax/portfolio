@@ -77,6 +77,37 @@ for (const bad of ["album-tile", "album-count", "Year – Year", "ICCIP", "Yashi
   check(`"${bad}" is gone`, !allHtml.includes(bad));
 }
 
+console.log("\nfont-loading skeleton is JS-only, never baked into markup");
+check(
+  '"fonts-loading" never appears as a class in static HTML',
+  !/class="[^"]*\bfonts-loading\b[^"]*"/.test(allHtml)
+);
+
+const cssFiles = [];
+(function walk(dir) {
+  for (const entry of readdirSync(dir)) {
+    const p = join(dir, entry);
+    if (statSync(p).isDirectory()) walk(p);
+    else if (p.endsWith(".css")) cssFiles.push(p);
+  }
+})(DIST);
+const allCss = cssFiles.map(read).join("\n");
+check("skeleton @keyframes shipped in built CSS", /@keyframes\s+skeleton-pulse/.test(allCss));
+check(
+  "reduced-motion override for the skeleton shipped in built CSS",
+  // Bounded to a single @media block — a loose cross-block match would pass even
+  // if these three tokens lived in unrelated rules.
+  /@media\s*\(prefers-reduced-motion:\s*reduce\)\s*\{(?:[^@]|@(?!media))*?fonts-loading(?:[^@]|@(?!media))*?animation:\s*none\s*!important/.test(allCss)
+);
+check(
+  "skeleton is wired to the real font faces, not document.fonts.ready",
+  htmlFiles.every((f) => {
+    const h = read(f);
+    return h.includes('document.fonts.load("400 1em Inter")') && !/fonts\.ready\.then/.test(h);
+  }),
+  "at head time the FontFaceSet is empty, so fonts.ready resolves instantly and the skeleton never paints"
+);
+
 console.log("\ninternal links resolve");
 const resolves = (url) => {
   const clean = url.split("#")[0].split("?")[0];
