@@ -1,5 +1,17 @@
 {
   "framework": "astro",
   "buildCommand": "astro build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/blog/why-vision-needs-embodiment",
+      "destination": "/blog/",
+      "permanent": false
+    },
+    {
+      "source": "/blog/notes-from-my-first-conference",
+      "destination": "/blog/",
+      "permanent": false
+    }
+  ]
 }

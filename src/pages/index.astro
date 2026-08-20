@@ -1,22 +1,35 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import {
+  publication,
+  education,
+  experience,
+  mentoring,
+  projects,
+  certifications,
+  honors,
+} from "../data/cv";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 ---
 
-<Layout title="Arnur Jumabekov — Researcher" description="Aspiring researcher — computer vision & robotics. Published work on medical image analysis and robotic control." active="main">
+<Layout title="Arnur Jumabekov — Researcher" description="Machine learning, computer vision, and robotics. IEEE-published work on medical image analysis and robotic control." active="main">
   <!-- JSON-LD Person schema -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Arnur Jumabekov",
     "url": "https://jubaportfolio.vercel.app/",
-    "description": "Undergraduate researcher at the intersection of computer vision and robotics. Published work on medical image analysis and robotic control.",
+    "description": "Undergraduate researcher in machine learning, computer vision, and robotics. Published work on medical image analysis and robotic control.",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "The Chinese University of Hong Kong"
+    },
     "sameAs": [
-      "https://linkedin.com/in/arnur-jumabekov",
+      "https://linkedin.com/in/arnurjumabekov",
       "https://github.com/turbokazax",
       "https://orcid.org/0009-0006-2199-6865"
     ]
@@ -26,9 +39,9 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   <section class="page-section" id="main">
     <h2 class="content-heading">About Me</h2>
     <p class="lede">
-      An undergraduate researcher at the intersection of computer vision and
-      robotics. I build models that detect disease in chest X-rays and control
-      systems that move robots with precision — and I publish what the
+      An undergraduate researcher working on machine learning, computer vision,
+      and robotics. I build models that detect disease in chest X-rays and
+      control systems that move robots with precision — and I publish what the
       experiments actually show.
     </p>
     <p class="muted body-text">
@@ -37,71 +50,69 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
       code, rigorous experiments, and reproducible results.
     </p>
 
+    <div class="seeking">
+      <p class="body-text">
+        <strong>Currently seeking:</strong> summer 2027 internships in
+        quantitative and machine-learning research, and research assistant
+        work during term.
+      </p>
+      <div class="score-chips">
+        <a class="chip mono" href="mailto:arnurjumabekov@gmail.com?subject=Research%20internship">Research internships</a>
+        <a class="chip mono" href="mailto:arnurjumabekov@gmail.com?subject=Research%20assistant%20position">RA positions</a>
+        <a class="chip mono" href="mailto:arnurjumabekov@gmail.com?subject=Collaboration">Collaboration</a>
+      </div>
+    </div>
+
     <hr class="hairline" />
 
     <h2 class="content-heading">Education</h2>
     <ol class="entry-list">
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">BSc Mathematics &amp; Information Engineering</h3>
-          <p class="entry-meta">
-            <span class="authors">Chinese University of Hong Kong</span>
-            <span class="sep">·</span>
-            <span class="venue mono">Sep 2026 – 2030</span>
-          </p>
-          <p class="entry-desc muted">
-            Interdisciplinary program spanning pure mathematics, signal systems, and software engineering.
-          </p>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">High School Diploma (A-Levels)</h3>
-          <p class="entry-meta">
-            <span class="authors">Haileybury Almaty</span>
-            <span class="sep">·</span>
-            <span class="venue mono">Aug 2023 – Jun 2025</span>
-          </p>
-          <p class="entry-desc muted">
-            A-Levels: Computer Science (A*), Maths (A*), Further Maths (A*), Physics (A).
-          </p>
-          <ul class="score-group-list">
-            <li class="score-group">
-              <span class="score-group-label">Standardized Tests</span>
-              <div class="score-chips">
-                <span class="chip mono">SAT: 1550</span>
-                <span class="chip mono">IELTS: 8.0</span>
-              </div>
-            </li>
-            <li class="score-group">
-              <span class="score-group-label">AP Exams</span>
-              <div class="score-chips">
-                <span class="chip mono">Calc BC: 5</span>
-                <span class="chip mono">CS A: 5</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </li>
+      {education.map((item) => (
+        <li class="entry">
+          <div class="entry-main">
+            <h3 class="entry-title">{item.title}</h3>
+            <p class="entry-meta">
+              <span class="authors">{item.org}</span>
+              <span class="sep">·</span>
+              <span class="venue mono">{item.dates}</span>
+            </p>
+            <p class="entry-desc muted">{item.desc}</p>
+            {item.scoreGroups.length > 0 && (
+              <ul class="score-group-list">
+                {item.scoreGroups.map((group) => (
+                  <li class="score-group">
+                    <span class="score-group-label">{group.label}</span>
+                    <div class="score-chips">
+                      {group.scores.map((score) => (
+                        <span class="chip mono">{score}</span>
+                      ))}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </li>
+      ))}
     </ol>
 
     <hr class="hairline" />
 
-    <h2 class="content-heading">Activities</h2>
+    <h2 class="content-heading">Mentoring &amp; Teaching</h2>
     <ol class="entry-list">
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Activity — Organization</h3>
-          <p class="entry-meta">
-            <span class="authors">Organization</span>
-            <span class="sep">·</span>
-            <span class="venue mono">Year – Year</span>
-          </p>
-          <p class="entry-desc faint">
-            Leadership, clubs, and service go here.
-          </p>
-        </div>
-      </li>
+      {mentoring.map((item) => (
+        <li class="entry">
+          <div class="entry-main">
+            <h3 class="entry-title">{item.title}</h3>
+            <p class="entry-meta">
+              <span class="authors">{item.org}</span>
+              <span class="sep">·</span>
+              <span class="venue mono">{item.dates}</span>
+            </p>
+            <p class="entry-desc muted">{item.desc}</p>
+          </div>
+        </li>
+      ))}
     </ol>
   </section>
 
@@ -112,19 +123,21 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
       <li class="entry">
         <div class="entry-main">
           <h3 class="entry-title">
-            <a href="https://ieeexplore.ieee.org/document/10898141">WeCAViT: A Weighted CNN model for Pneumonia Detection in Chest X-rays</a>
+            <a href={publication.url}>{publication.title}</a>
           </h3>
           <p class="entry-meta">
-            <span class="authors">Arnur Jumabekov, Maryam Yashtini</span>
+            <span class="authors">{publication.authors}</span>
             <span class="sep">·</span>
-            <span class="venue mono">13th IEEE ICCIP, March 2025</span>
+            <span class="venue mono">{publication.venue}</span>
           </p>
-          <p class="entry-desc muted">
-            Hybrid CNN-CBAM-ViT architecture for pneumonia detection in chest X-rays.
-          </p>
+          <p class="entry-desc muted">{publication.desc}</p>
+          <details class="bibtex">
+            <summary class="mono">BibTeX</summary>
+            <pre><code>{publication.bibtex}</code></pre>
+          </details>
         </div>
         <div class="entry-links">
-          <a href="https://ieeexplore.ieee.org/document/10898141" class="chip mono">DOI</a>
+          <a href={publication.url} class="chip mono">DOI</a>
         </div>
       </li>
     </ol>
@@ -134,34 +147,19 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   <section class="page-section" id="projects">
     <h2 class="content-heading">Projects</h2>
     <ol class="entry-list">
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">WeCAViT</h3>
-          <p class="entry-meta">
-            <span class="venue mono">Python, PyTorch, Pandas, Scikit-Learn, Google Colab, Huggingface Transformers</span>
-            <span class="sep">·</span>
-            <span class="mono">Jun 2024 – Present</span>
-          </p>
-          <p class="entry-desc muted">
-            Hybrid CNN-CBAM-ViT model for pneumonia detection; ~4-5% accuracy &amp; F1 increase over SOTA CNNs/ViTs/hybrids.
-            &gt;17 ablation experiments, &gt;8 SOTA comparisons; authored research paper.
-          </p>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">QuantaSoil</h3>
-          <p class="entry-meta">
-            <span class="venue mono">Python, Pandas, Scikit-Learn, Google Colab, OpenAI API</span>
-            <span class="sep">·</span>
-            <span class="mono">Sep 2023 – Nov 2023</span>
-          </p>
-          <p class="entry-desc muted">
-            ML classifiers to predict optimal crop/fertilizer from soil data; &gt;95% accuracy.
-            Custom GPT-4 text prompts via OpenAI API; integrated in React web app.
-          </p>
-        </div>
-      </li>
+      {projects.map((item) => (
+        <li class="entry">
+          <div class="entry-main">
+            <h3 class="entry-title">{item.title}</h3>
+            <p class="entry-meta">
+              <span class="venue mono">{item.stack}</span>
+              <span class="sep">·</span>
+              <span class="mono">{item.dates}</span>
+            </p>
+            <p class="entry-desc muted">{item.desc}</p>
+          </div>
+        </li>
+      ))}
     </ol>
   </section>
 
@@ -169,10 +167,11 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   <section class="page-section" id="cv">
     <h2 class="content-heading">CV &amp; Portfolio</h2>
     <p class="lede">
-      A one-page CV covering research, projects, and technical experience — and a slide deck of my robotics &amp; project work. Based in Almaty, with research interests in medical image analysis and robotic control.
+      A one-page CV covering research, projects, and technical experience — and
+      a slide deck of my robotics &amp; project work.
     </p>
     <div class="cv-downloads">
-      <a href="/Arnur_Jumabekov_Resume-1.pdf" class="download-chip mono">
+      <a href="/arnur-jumabekov-cv.pdf" class="download-chip mono">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download CV
       </a>
@@ -184,100 +183,54 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 
     <hr class="hairline" />
 
-    <h2 class="content-heading">Research Experience</h2>
+    <h2 class="content-heading">Research &amp; Engineering Experience</h2>
     <ol class="entry-list">
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Smart Pipe Inspection Robot — Research Assistant</h3>
-          <p class="entry-meta">
-            <span class="authors">ARMS Lab, Nazarbayev University, Astana</span>
-            <span class="sep">·</span>
-            <span class="venue mono">Aug 2025 – Present</span>
-          </p>
-          <p class="entry-desc muted">
-            Developing Python API to control Dynamixel DC motors; custom path-following algorithms.
-          </p>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Tensegrity Robot Project — Intern, Lead Programmer</h3>
-          <p class="entry-meta">
-            <span class="authors">ISSAI, Nazarbayev University, Astana</span>
-            <span class="sep">·</span>
-            <span class="venue mono">May 2024 – Jun 2024</span>
-          </p>
-          <p class="entry-desc muted">
-            C++ control firmware for Arduino; modular OOP architecture; PID control for linear actuators, &lt;5% position error.
-            Python pipelines for real-time position extraction via Serial Port for OptiTrack feedback.
-          </p>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Pioneer Research Institute — Student Researcher</h3>
-          <p class="entry-meta">
-            <span class="authors">Supervised by Dr. Maryam Yashtini (Georgetown), Remote</span>
-            <span class="sep">·</span>
-            <span class="venue mono">Jun 2024 – Jan 2025</span>
-          </p>
-          <p class="entry-desc muted">
-            Literature review on CV in Healthcare; proposed and experimented on WeCAViT architecture.
-          </p>
-        </div>
-      </li>
+      {experience.map((item) => (
+        <li class="entry">
+          <div class="entry-main">
+            <h3 class="entry-title">{item.title}</h3>
+            <p class="entry-meta">
+              <span class="authors">{item.org}</span>
+              <span class="sep">·</span>
+              <span class="venue mono">{item.dates}</span>
+            </p>
+            <p class="entry-desc muted">{item.desc}</p>
+          </div>
+        </li>
+      ))}
     </ol>
 
     <hr class="hairline" />
 
     <h2 class="content-heading">Certifications</h2>
     <ol class="entry-list">
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Samsung Innovation Campus — Android Development Track</h3>
-          <p class="entry-meta">
-            <span class="venue mono">Java, Google Firebase SDK · 2020–2021</span>
-          </p>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Microsoft AI Challenge — Machine Learning Track</h3>
-          <p class="entry-meta">
-            <span class="venue mono">Python, PyTorch, scikit-learn, pandas, NumPy, matplotlib · 2023</span>
-          </p>
-        </div>
-      </li>
+      {certifications.map((item) => (
+        <li class="entry">
+          <div class="entry-main">
+            <h3 class="entry-title">{item.title}</h3>
+            <p class="entry-meta">
+              <span class="venue mono">{item.meta}</span>
+            </p>
+          </div>
+        </li>
+      ))}
     </ol>
 
     <hr class="hairline" />
 
     <h2 class="content-heading">Honors &amp; Awards</h2>
     <ol class="entry-list">
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">ISEF Special Award</h3>
-          <p class="entry-meta">
-            <span class="venue mono">Regeneron &amp; "Mawhiba" Foundation · 2025</span>
-          </p>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">Kazakhstan Republican Science Projects Fair (KazSEF) — Gold Medal</h3>
-          <p class="entry-meta">
-            <span class="venue mono">Top 0.7%, "Informatics" · 2025</span>
-          </p>
-        </div>
-      </li>
-      <li class="entry">
-        <div class="entry-main">
-          <h3 class="entry-title">British Physics Olympiad — Silver Medal</h3>
-          <p class="entry-meta">
-            <span class="venue mono">Top ~10% worldwide · 2024</span>
-          </p>
-        </div>
-      </li>
+      {honors.map((item) => (
+        <li class="entry">
+          <div class="entry-main">
+            <h3 class="entry-title">{item.title}</h3>
+            <p class="entry-meta">
+              <span class="venue mono">{item.meta}</span>
+            </p>
+            <p class="entry-desc muted">{item.desc}</p>
+          </div>
+        </li>
+      ))}
     </ol>
   </section>
 
@@ -288,71 +241,65 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
       Notes on research, papers, and building things. Shorter and more
       frequent than publications.
     </p>
-    <ol class="entry-list">
-      {posts.map((post) => (
-        <li class="entry">
-          <div class="entry-main">
-            <h3 class="entry-title">
-              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-            </h3>
-            <p class="entry-meta">
-              <time class="mono" datetime={post.data.date.toISOString().slice(0, 10)}>
-                {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-              </time>
-            </p>
-            <p class="entry-desc muted">{post.data.description}</p>
-            {post.data.tags.length > 0 && (
-              <ul class="prose-tags">
-                {post.data.tags.map((tag) => (
-                  <li class="chip mono">{tag}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </li>
-      ))}
-    </ol>
-  </section>
-
-  <!-- ALBUMS -->
-  <section class="page-section" id="albums">
-    <h2 class="content-heading">Albums</h2>
-    <p class="lede">
-      Photos from conferences, labs, and the field. A visual log of the work.
-    </p>
-    <ol class="album-list">
-      <li class="album">
-        <div class="album-grid">
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-        </div>
-        <p class="album-meta"><span class="album-name">Conference 2026</span> <span class="mono album-count">12 photos</span></p>
-      </li>
-      <li class="album">
-        <div class="album-grid">
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-        </div>
-        <p class="album-meta"><span class="album-name">Lab &amp; Builds</span> <span class="mono album-count">8 photos</span></p>
-      </li>
-      <li class="album">
-        <div class="album-grid">
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-          <div class="album-tile"></div>
-        </div>
-        <p class="album-meta"><span class="album-name">Field &amp; Travel</span> <span class="mono album-count">15 photos</span></p>
-      </li>
-    </ol>
+    {posts.length === 0 ? (
+      <p class="muted body-text">No posts published yet.</p>
+    ) : (
+      <ol class="entry-list">
+        {posts.map((post) => (
+          <li class="entry">
+            <div class="entry-main">
+              <h3 class="entry-title">
+                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+              </h3>
+              <p class="entry-meta">
+                <time class="mono" datetime={post.data.date.toISOString().slice(0, 10)}>
+                  {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}
+                </time>
+              </p>
+              <p class="entry-desc muted">{post.data.description}</p>
+              {post.data.tags.length > 0 && (
+                <ul class="prose-tags">
+                  {post.data.tags.map((tag) => (
+                    <li class="chip mono">{tag}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    )}
   </section>
 </Layout>
+
+<style>
+  .seeking {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .bibtex {
+    margin-top: var(--space-3);
+  }
+
+  .bibtex summary {
+    font-size: var(--text-xs);
+    color: var(--ink-muted);
+    cursor: pointer;
+  }
+
+  .bibtex pre {
+    margin: var(--space-2) 0 0;
+    padding: var(--space-3);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: 1.6;
+    color: var(--ink-muted);
+    background: var(--bg-elevated);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-sm);
+  }
+</style>
