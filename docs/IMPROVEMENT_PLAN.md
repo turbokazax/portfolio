@@ -29,7 +29,7 @@ og:image 404 (×4), font @import chain, theme-init FOUC (root cause of the 404-d
 One plain data module read by the pages, plus a one-time site-vs-PDF diff, plus reconciling DESIGN.md/TODO.md. **Not** four zod collections — see "Council resolution" for why that was cut.
 
 ### WS-E: Differentiating content
-Availability/"currently seeking" block (promoted to 1b), author-version paper PDF + BibTeX (promoted to 1b), WeCAViT evidence page, robot video loops replacing Albums, conference-post anchoring.
+Availability/"currently seeking" block (promoted to 1b), BibTeX (promoted to 1b; no self-hosted paper PDF — IEEE Xplore link only), WeCAViT evidence page, robot video loops replacing Albums, conference-post anchoring.
 
 ### WS-F: Repo hygiene + honest CI
 The Tests workflow is a **broken gate today**, not tidying: `test.yml` runs `npm test` with no dev server on :4321 and no Playwright browser install, and `test-site.mjs` asserts things that are false (e.g. "A-Level chips removed" while `index.astro:68-83` renders them). It cannot pass. Decision: **delete both in Phase 1a** (Build Check remains as the honest gate). Remaining hygiene (scratch scripts, `IMG_7716.JPG`, pdf deps, `better-belt` rename, README) lands in Phase 2.
@@ -90,7 +90,7 @@ The Tests workflow is a **broken gate today**, not tidying: `test.yml` runs `npm
 
 **1b.3 "Currently seeking" block** *(promoted from Phase 3 per council: ~15 lines, and the only change that converts a visitor into an email)* — under the homepage lede: one sentence on what Arnur seeks, 2-3 audience lines ending in `mailto:` chips with prefilled subjects, reusing chip styles. Accept: a first-time visitor can state what he's seeking within one viewport; chips open prefilled email. *(Blocked on: one sentence from the user.)*
 
-**1b.4 Author-version paper PDF + BibTeX** *(promoted from Phase 3 per council: the IEEE link is paywalled, so evaluators can't read the strongest asset; this is an upload plus two `<a>` tags, not a case-study build)* — self-archived accepted-manuscript PDF (IEEE permits) in `public/`, linked from the publication entry alongside DOI; BibTeX in a `<details>` block. Accept: publication entry links a non-paywalled PDF and copyable BibTeX. *(Blocked on: user locating the accepted manuscript.)*
+**1b.4 BibTeX — done.** ~~Author-version paper PDF~~ **rejected by the site owner:** the paper is not self-archived here. The publication entry links to the IEEE Xplore record only, to avoid any question of redistributing the published version. Copyable BibTeX ships in a `<details>` block instead. Anyone who needs the full text goes through IEEE.
 
 ### Phase 2 — Structural (1-2 days)
 

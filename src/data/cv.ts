@@ -54,7 +54,7 @@ export const experience = [
     title: "Robot Programmer — FTC #24784 “Nyx Pardus” & #21063 “Initium Robotics”",
     org: "FIRST Tech Challenge",
     dates: "Aug 2023 – Jun 2025",
-    desc: "Wrote modular Java robot-control code with OpenCV object detection; co-led game strategy and mentored junior programmers. Think Award (engineering portfolio) at the FTC Cyprus Championship; qualified for the Central Asia FIRST Championship twice.",
+    desc: "Wrote modular Java robot-control code with OpenCV object detection; led team game strategy and mentored junior programmers. Think Award (engineering portfolio) at the FTC Cyprus Championship; qualified for the Central Asia FIRST Championship twice.",
   },
   {
     title: "Pioneer Academics — Student Researcher",
@@ -132,7 +132,7 @@ export const honors = [
   {
     title: "Republican Science Projects Fair (KazSEF) — Gold Medal",
     meta: "Kazakhstan · 2025",
-    desc: "Joint 1st of 433 national finalists (three projects tied at 100/100), from ≈4,000 entrants; absolute 1st in the Informatics section.",
+    desc: "Top 1 of 433 national finalists (joint 1st: three projects tied at 100/100), from ≈4,000 entrants; absolute 1st in the Informatics section.",
   },
   {
     title: "Mathematics Olympiads",

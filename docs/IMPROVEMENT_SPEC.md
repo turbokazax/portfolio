@@ -206,12 +206,15 @@ Overwrite `public/arnur-jumabekov-cv.pdf`. Verify: `pdftotext` or manual read �
 ```
 Reuses existing `.chip`/`.score-chips` styles; add `.seeking { margin-top: var(--space-5) }` locally if spacing needs it. Verify: chips open prefilled mail; block visible in first viewport at 1280×900 and 390×844.
 
-### 1b.4 Author PDF + BibTeX
-**Files:** `public/wecavit-author-version.pdf` (new), `src/pages/index.astro` (publications entry, `entry-links` div ~:126):
-```astro
-<a href="/wecavit-author-version.pdf" class="chip mono">PDF</a>
-```
-Below the entry, a `<details class="bibtex"><summary class="mono">BibTeX</summary><pre><code>@inproceedings{…}</code></pre></details>` with the citation copied from the IEEE record. Verify: PDF opens; BibTeX pastes cleanly into a .bib file.
+### 1b.4 BibTeX (no self-hosted paper PDF) — DONE
+**Decision:** the site does not host a copy of the paper. Linking the IEEE Xplore
+record is the only distribution route, so there is no question of redistributing the
+published version. Do not add `public/wecavit-author-version.pdf` or a `PDF` chip.
+
+**Shipped:** the publication entry links the IEEE Xplore record, and a
+`<details class="bibtex">` block carries the citation (`publication.bibtex` in
+`src/data/cv.ts`). Fields are limited to those verifiable from the record —
+no page numbers are invented. Verify: BibTeX pastes cleanly into a `.bib` file.
 
 ---
 
